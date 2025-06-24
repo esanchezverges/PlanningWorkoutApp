@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "PlanningWorkoutApp.Web",
   "resources": {
-    "hash": "sha256-GLFNoz1JHwf8VZyCnj3E7LQnWLjhComFbeAJk2Yt6+s=",
+    "hash": "sha256-3inGzXzjn3TNpACpUbxEKrfUAPkqj7UJPGQeR3jrV4s=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.phaa9r44xv.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.Forms.1ddspp16i2.wasm": "Microsoft.AspNetCore.Components.Forms.wasm",
@@ -32,8 +32,8 @@
       "Microsoft.Win32.Registry.ykr6iyjchr.wasm": "Microsoft.Win32.Registry.wasm",
       "mscorlib.brg9pkj3je.wasm": "mscorlib.wasm",
       "netstandard.wuzd3f1y6v.wasm": "netstandard.wasm",
-      "PlanningWorkoutApp.Shared.5swxvfkg36.wasm": "PlanningWorkoutApp.Shared.wasm",
-      "PlanningWorkoutApp.Web.e24o4s5gok.wasm": "PlanningWorkoutApp.Web.wasm",
+      "PlanningWorkoutApp.Shared.bz5beheshm.wasm": "PlanningWorkoutApp.Shared.wasm",
+      "PlanningWorkoutApp.Web.pniib9qftd.wasm": "PlanningWorkoutApp.Web.wasm",
       "System.AppContext.3h1likbfvx.wasm": "System.AppContext.wasm",
       "System.Buffers.wt7n1r1ovk.wasm": "System.Buffers.wasm",
       "System.Collections.Concurrent.65adg6natn.wasm": "System.Collections.Concurrent.wasm",
@@ -252,8 +252,8 @@
       "Microsoft.Win32.Registry.ykr6iyjchr.wasm": "sha256-3uRNoZi2yTSZac0wswVIXHHl0kOphrkQkYHoyQRI7Bw=",
       "mscorlib.brg9pkj3je.wasm": "sha256-FzZwzxUYYyg3qxc7Km8r50UKAmRWrIeckSFG1NTHKNU=",
       "netstandard.wuzd3f1y6v.wasm": "sha256-yAXc0deBIRkWTVXqADZfhgZtrxGgJCIbZYVtA0NjvdM=",
-      "PlanningWorkoutApp.Shared.5swxvfkg36.wasm": "sha256-y4DhbH3EtCrxbbTXQJE/fukglNnTZbVjv9hGYn3Raa4=",
-      "PlanningWorkoutApp.Web.e24o4s5gok.wasm": "sha256-lu4o1rbdvPJR99OlVwzm7rnzBygY9qPLRXD+0ZMXnh4=",
+      "PlanningWorkoutApp.Shared.bz5beheshm.wasm": "sha256-+XohRC8lWSKdOhwIGMwzgCfct9Ykxvbfx2zKZCs/dDw=",
+      "PlanningWorkoutApp.Web.pniib9qftd.wasm": "sha256-9T11aBjEesYj1VMF2ywx3RYOjmcZO6PgLxF1RvFefGo=",
       "System.AppContext.3h1likbfvx.wasm": "sha256-SXOgf84YYKe5+VwcT2d/y7WxQm03eawBjotnOdXlYQw=",
       "System.Buffers.wt7n1r1ovk.wasm": "sha256-nHti/7kud5jyzrG+V97eg2HrDCxobbZNRuUt8BzQnus=",
       "System.Collections.Concurrent.65adg6natn.wasm": "sha256-ZrPqVqhTyYGv4f0NcYQylt+AZsK4nCbFIRUOuCeo1rg=",
