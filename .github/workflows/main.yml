@@ -19,7 +19,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Publish
-        run: dotnet publish MyTrainerApp.Web/MyTrainerApp.Web.csproj -c Release -o release --nologo --nobuild -p:PublishTrimmed=false -p:GHPages=true -p:BaseHref=\"/${{ github.repository }}/\"
+        run: dotnet publish PlanningWorkoutApp.Web/PlanningWorkoutApp.Web.csproj -c Release -o release --nologo --nobuild -p:PublishTrimmed=false -p:GHPages=true -p:BaseHref=\"/${{ github.repository }}/\"
 
       - name: Copy index.html to 404.html
         run: cp release/wwwroot/index.html release/wwwroot/404.html
