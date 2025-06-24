@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PlanningWorkoutApp.Shared\PlanningWorkoutApp.Shared.csproj" />
+    <ProjectReference Include="..\PlanningWorkoutApp.UI\PlanningWorkoutApp.UI.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanningWorkoutApp.MAUI", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanningWorkoutApp.API", "PlanningWorkoutApp.API\PlanningWorkoutApp.API.csproj", "{CAFA0FE8-D564-4724-9DFA-FC5AFC623D4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanningWorkoutApp.UI", "PlanningWorkoutApp.UI\PlanningWorkoutApp.UI.csproj", "{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,8 +71,23 @@ Global
 		{CAFA0FE8-D564-4724-9DFA-FC5AFC623D4F}.Release|x64.Build.0 = Release|Any CPU
 		{CAFA0FE8-D564-4724-9DFA-FC5AFC623D4F}.Release|x86.ActiveCfg = Release|Any CPU
 		{CAFA0FE8-D564-4724-9DFA-FC5AFC623D4F}.Release|x86.Build.0 = Release|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Debug|x64.Build.0 = Debug|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Debug|x86.Build.0 = Debug|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Release|x64.ActiveCfg = Release|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Release|x64.Build.0 = Release|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Release|x86.ActiveCfg = Release|Any CPU
+		{5ED990DA-532D-4120-ADF1-C5696CBBA3CF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5019C5A9-723C-4F0D-BF07-433CD1ED8BF6}
 	EndGlobalSection
 EndGlobal

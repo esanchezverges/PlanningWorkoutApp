@@ -1,0 +1,8 @@
+﻿@namespace PlanningWorkoutApp.UI
+
+<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">@Label</RadzenText>
+<RadzenTextBox Style="width: 100%" aria-label="@Label" />
+
+@code{
+    [Parameter] public string? Label { get; set; }
+}
