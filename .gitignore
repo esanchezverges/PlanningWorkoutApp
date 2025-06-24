@@ -1,0 +1,51 @@
+# .NET build folders
+bin/
+obj/
+artifacts/
+
+# Visual Studio files
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET user secrets
+**/appsettings.Development.json
+**/secrets.json
+
+# SQLite DB local (si usas EF Core + SQLite)
+*.db
+*.db-journal
+
+# Blazor WASM publish artifacts
+MyTrainerApp.Web/release/
+MyTrainerApp.Web/wwwroot/dist/
+
+# MAUI artifacts (platform-specific)
+MyTrainerApp.MAUI/Platforms/Android/obj/
+MyTrainerApp.MAUI/Platforms/iOS/obj/
+MyTrainerApp.MAUI/Platforms/MacCatalyst/obj/
+MyTrainerApp.MAUI/Platforms/Windows/obj/
+
+# MAUI device build outputs
+MyTrainerApp.MAUI/**/*.apk
+MyTrainerApp.MAUI/**/*.aab
+MyTrainerApp.MAUI/**/*.ipa
+
+# GitHub Pages output (if using local deploy)
+gh-pages/
+
+# Logs
+*.log
+*.tlog
+
+# Rider/JetBrains
+.idea/
+*.sln.iml
+
+# Others
+*.DS_Store
+Thumbs.db
+
