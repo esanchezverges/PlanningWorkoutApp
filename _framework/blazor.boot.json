@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "PlanningWorkoutApp.Web",
   "resources": {
-    "hash": "sha256-7CEng9r1uFd18CW+NXljIvVToSUoDUn58S0mFurL+tg=",
+    "hash": "sha256-+rbk8wffx3iJ/1n0FSllAc6EObE9DOqBcqBfhU0wp2U=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.phaa9r44xv.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.4o2vz6uw5j.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -195,9 +195,9 @@
       "mscorlib.brg9pkj3je.wasm": "mscorlib.wasm",
       "netstandard.wuzd3f1y6v.wasm": "netstandard.wasm",
       "System.Private.CoreLib.05ksnw82w3.wasm": "System.Private.CoreLib.wasm",
-      "PlanningWorkoutApp.Shared.agpxsusyug.wasm": "PlanningWorkoutApp.Shared.wasm",
-      "PlanningWorkoutApp.UI.aqs7yb1v8a.wasm": "PlanningWorkoutApp.UI.wasm",
-      "PlanningWorkoutApp.Web.nyk4izlmmx.wasm": "PlanningWorkoutApp.Web.wasm",
+      "PlanningWorkoutApp.Shared.zw8brwipd8.wasm": "PlanningWorkoutApp.Shared.wasm",
+      "PlanningWorkoutApp.UI.yxx0e2tafa.wasm": "PlanningWorkoutApp.UI.wasm",
+      "PlanningWorkoutApp.Web.b2huq7ppdx.wasm": "PlanningWorkoutApp.Web.wasm",
       "dotnet.js": "dotnet.js",
       "dotnet.native.rtblh4npr3.js": "dotnet.native.js",
       "dotnet.native.aqhezbunpl.wasm": "dotnet.native.wasm",
@@ -415,9 +415,9 @@
       "WindowsBase.u25hol0de4.wasm": "sha256-CgB28KCiYKHd4yK6IM0PJ526P7IbRCpNkGTqn+cLwxs=",
       "mscorlib.brg9pkj3je.wasm": "sha256-FzZwzxUYYyg3qxc7Km8r50UKAmRWrIeckSFG1NTHKNU=",
       "netstandard.wuzd3f1y6v.wasm": "sha256-yAXc0deBIRkWTVXqADZfhgZtrxGgJCIbZYVtA0NjvdM=",
-      "PlanningWorkoutApp.Shared.agpxsusyug.wasm": "sha256-5uySkYDyMYecbFNx0w/2NvqVhFJ49FrSuui29YWOH1w=",
-      "PlanningWorkoutApp.UI.aqs7yb1v8a.wasm": "sha256-zjSFSwjptjyAr/rH/wxYR85W4E4BFnNSnmfZpYpkjf8=",
-      "PlanningWorkoutApp.Web.nyk4izlmmx.wasm": "sha256-4S6LmH/5tqvrUPaWiD0zRy7XbYECWUCCyh1Ya7hlQog="
+      "PlanningWorkoutApp.Shared.zw8brwipd8.wasm": "sha256-49zwVdoHuUk02hQCGL1VaYjCF9JOT5CryHrkL1yZKec=",
+      "PlanningWorkoutApp.UI.yxx0e2tafa.wasm": "sha256-Ku44d8bz8pTfWbKans4N8ge7IsfP+KlDPssLxF7dR6E=",
+      "PlanningWorkoutApp.Web.b2huq7ppdx.wasm": "sha256-HaiXfefxPPywmQl/5BOeKvafxmxxvUDyN+zKzT6Bfvc="
     }
   },
   "cacheBootResources": true,
