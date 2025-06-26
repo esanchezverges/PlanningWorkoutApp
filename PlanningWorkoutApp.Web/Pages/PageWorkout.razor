@@ -1,13 +1,38 @@
 ﻿@page "/workout"
+@inject DialogService DialogService
 
+<RadzenButton Click="@OpenSideDialog" Text="Añadir ejercicio"></RadzenButton>
 <RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
-    <RadzenColumn Size="12" SizeMD="4" >
-        <PlanInput Label="Exercici" />
-        <PlanInput Label="Repeticions" />
-        <PlanInput Label="Pes" />
-    </RadzenColumn>
+    @foreach ( var e in Exercices )
+    {
+        <RadzenColumn Size="12" SizeMD="4">
+            <PlanInput Label="Numero de sets" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="4">
+            <PlanInput Label="Ejercicio" />
+            <PlanInput Label="Repeticiones" />
+            <PlanInput Label="Peso (kg)" />
+        </RadzenColumn>
+    }
 </RadzenRow>
 
 @code {
+    public class ExerciseInWorkout
+    {
+        public string Name { get; set; }
+        public int Repetitions { get; set; }
+        public double Weight { get; set; }
+    }
+    public List<ExerciseInWorkout> Exercices { get; set; } = new List<ExerciseInWorkout>();
 
+    public void AddNewExercice()
+    {
+        Exercices.Add(new ExerciseInWorkout());
+    }
+
+
+    async Task OpenSideDialog()
+    {
+        await DialogService.OpenSideAsync<DialogExerciseDataPicker>("Escoje los ejercicios que quieres añadir", options: new SideDialogOptions { CloseDialogOnOverlayClick = true, Position = DialogPosition.Left, ShowMask = true });
+    }
 }

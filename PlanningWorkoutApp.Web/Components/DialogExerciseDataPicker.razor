@@ -1,0 +1,106 @@
+﻿@namespace PlanningWorkoutApp.Web
+
+<PlanInput Label="Buscador" />
+@foreach ( var e in exerciseDatas )
+{
+    <RadzenRow>
+        <RadzenCard>
+            <ChildContent>
+                <div class="rd-d-flex">
+					<h3>@e.Name</h3>
+                    
+					<RadzenButton Text="Añadir" />
+                </div>
+                <p>@e.Description</p>
+                <RadzenImage Path="@e.ImageUrl" Style="max-width: 100%;" />
+            </ChildContent>
+        </RadzenCard>
+    </RadzenRow>
+}
+@code {
+
+    public List<ExerciseData> exerciseDatas { get; set; } = new List<ExerciseData>
+    {
+        new ExerciseData
+        {
+            Name = "Push Up",
+            Description = "A basic bodyweight exercise that targets the chest, shoulders, and triceps.",
+            BodyPart = "Chest",
+            Equipment = "None",
+            TargetMuscle = "Pectorals",
+            ImageUrl = "https://example.com/pushup.jpg",
+            VideoUrl = "https://example.com/pushup.mp4"
+        },
+        new ExerciseData
+        {
+            Name = "Squat",
+            Description = "A fundamental lower body exercise that works the quadriceps, hamstrings, and glutes.",
+            BodyPart = "Legs",
+            Equipment = "None",
+            TargetMuscle = "Quadriceps",
+            ImageUrl = "https://example.com/squat.jpg",
+            VideoUrl = "https://example.com/squat.mp4"
+        },
+        new ExerciseData
+        {
+            Name = "Deadlift",
+            Description = "A compound exercise that targets the back, glutes, and hamstrings.",
+            BodyPart = "Back",
+            Equipment = "Barbell",
+            TargetMuscle = "Hamstrings",
+            ImageUrl = "https://example.com/deadlift.jpg",
+            VideoUrl = "https://example.com/deadlift.mp4"
+        },
+        new ExerciseData
+        {
+            Name = "Plank",
+            Description = "An isometric core exercise that strengthens the abdominal muscles.",
+            BodyPart = "Core",
+            Equipment = "None",
+            TargetMuscle = "Abdominals",
+            ImageUrl = "https://example.com/plank.jpg",
+            VideoUrl = "https://example.com/plank.mp4"
+        },
+        new ExerciseData
+        {
+            Name = "Pull Up",
+            Description = "An upper body exercise that primarily targets the back and biceps.",
+            BodyPart = "Back",
+            Equipment = "Pull-up Bar",
+            TargetMuscle = "Latissimus Dorsi",
+            ImageUrl = "https://example.com/pullup.jpg",
+            VideoUrl = "https://example.com/pullup.mp4"
+        },
+        new ExerciseData
+        {
+            Name = "Lunges",
+            Description = "A lower body exercise that targets the quadriceps, hamstrings, and glutes.",
+            BodyPart = "Legs",
+            Equipment = "None",
+            TargetMuscle = "Glutes",
+            ImageUrl = "https://example.com/lunges.jpg",
+            VideoUrl = "https://example.com/lunges.mp4"
+        },
+        new ExerciseData
+        {
+            Name = "Bench Press",
+            Description = "A compound exercise that targets the chest, shoulders, and triceps using a barbell.",
+            BodyPart = "Chest",
+            Equipment = "Barbell",
+            TargetMuscle = "Pectorals",
+            ImageUrl = "https://example.com/benchpress.jpg",
+            VideoUrl = "https://example.com/benchpress.mp4"
+        }
+    };
+
+    public class ExerciseData
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string BodyPart { get; set; }
+        public string Equipment { get; set; }
+        public string TargetMuscle { get; set; }
+        public string ImageUrl { get; set; }
+        public string VideoUrl { get; set; }
+    }
+}
