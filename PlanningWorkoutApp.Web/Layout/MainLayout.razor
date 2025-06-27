@@ -11,7 +11,16 @@
         </div>
 
         <article class="content px-4">
-            @Body
+            <ErrorBoundary>
+                <ChildContent>
+                    @Body
+                </ChildContent>
+                <ErrorContent>
+                    <h1>Something went wrong</h1>
+                    <p>Sorry, there was an error while rendering the page.</p>
+                    @context.ToString()
+                </ErrorContent>
+            </ErrorBoundary>
         </article>
     </main>
 </div>

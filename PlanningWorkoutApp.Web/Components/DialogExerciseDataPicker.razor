@@ -1,24 +1,37 @@
 ﻿@namespace PlanningWorkoutApp.Web
+@inject DialogService DialogService
 
-<PlanInput Label="Buscador" />
-@foreach ( var e in exerciseDatas )
-{
-    <RadzenRow>
-        <RadzenCard>
-            <ChildContent>
-                <div class="rd-d-flex">
-					<h3>@e.Name</h3>
-                    
-					<RadzenButton Text="Añadir" />
-                </div>
-                <p>@e.Description</p>
-                <RadzenImage Path="@e.ImageUrl" Style="max-width: 100%;" />
-            </ChildContent>
-        </RadzenCard>
-    </RadzenRow>
-}
+<RadzenStack>
+    <PlanInput Label="Buscador" />
+</RadzenStack>
+<RadzenStack Gap="2em">
+    @foreach ( var e in exerciseDatas )
+    {
+        <RadzenRow>
+            <RadzenCard>
+                <ChildContent>
+                    <div class="rd-d-flex">
+                        <h3>@e.Name</h3>
+                        @if ( !IsExerciseAdded(e) )
+                        {
+                            <RadzenButton Click="@(() => AddExercise(e))" Text="Añadir" />
+                        }
+                        else
+                        {
+                            <RadzenButton ButtonStyle="ButtonStyle.Danger" Click="@(() => DeleteExercise(e))" Text="Eliminar" />
+                        }
+                    </div>
+                    <p>@e.Description</p>
+                    <RadzenImage Path="@e.ImageUrl" Style="max-width: 100%;" />
+                </ChildContent>
+            </RadzenCard>
+        </RadzenRow>
+    }
+</RadzenStack>
+<div class="fix-bottom">
+    <RadzenButton Click="@(() => CloseDialog())" Text="Confirmar"></RadzenButton>
+</div>
 @code {
-
     public List<ExerciseData> exerciseDatas { get; set; } = new List<ExerciseData>
     {
         new ExerciseData
@@ -92,15 +105,36 @@
             VideoUrl = "https://example.com/benchpress.mp4"
         }
     };
+    public List<ExerciseData> AddedExercises { get; set; } = new List<ExerciseData>();
 
-    public class ExerciseData
+    public void AddExercise(ExerciseData exercise)
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string BodyPart { get; set; }
-        public string Equipment { get; set; }
-        public string TargetMuscle { get; set; }
-        public string ImageUrl { get; set; }
-        public string VideoUrl { get; set; }
+        AddedExercises.Add(exercise);
+    }
+
+    public void DeleteExercise(ExerciseData exercise)
+    {
+        AddedExercises.RemoveAll(e => e.Name == exercise.Name);
+    }
+
+    public bool IsExerciseAdded(ExerciseData exercise)
+    {
+        return AddedExercises.Any(e => e.Name == exercise.Name);
+    }
+
+    public void CloseDialog()
+    {
+        DialogService.CloseSide(AddedExercises);
     }
 }
+
+<style>
+  .fix-bottom{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000; 
+  }
+</style>

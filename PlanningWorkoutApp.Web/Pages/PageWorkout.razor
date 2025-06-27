@@ -2,37 +2,41 @@
 @inject DialogService DialogService
 
 <RadzenButton Click="@OpenSideDialog" Text="Añadir ejercicio"></RadzenButton>
-<RadzenRow Gap="2rem" RowGap="2rem" class="rz-m-0 rz-m-md-12">
-    @foreach ( var e in Exercices )
+<RadzenStack Gap="2em">
+    @foreach ( var e in Exercises )
     {
-        <RadzenColumn Size="12" SizeMD="4">
+        <RadzenCard>
+            <PlanInput Label="Ejercicio"
+            Value=@e.Name
+            Disabled />
             <PlanInput Label="Numero de sets" />
-        </RadzenColumn>
-        <RadzenColumn Size="12" SizeMD="4">
-            <PlanInput Label="Ejercicio" />
             <PlanInput Label="Repeticiones" />
             <PlanInput Label="Peso (kg)" />
-        </RadzenColumn>
+            <RadzenButton Click="() => DeleteExercise(e)" ButtonStyle="ButtonStyle.Danger" Text="Eliminar"></RadzenButton>
+        </RadzenCard>
     }
-</RadzenRow>
+</RadzenStack>
 
 @code {
-    public class ExerciseInWorkout
-    {
-        public string Name { get; set; }
-        public int Repetitions { get; set; }
-        public double Weight { get; set; }
-    }
-    public List<ExerciseInWorkout> Exercices { get; set; } = new List<ExerciseInWorkout>();
+    public List<ExerciseInWorkout> Exercises { get; set; } = new List<ExerciseInWorkout>();
 
-    public void AddNewExercice()
+    private void DeleteExercise(ExerciseInWorkout exercise)
     {
-        Exercices.Add(new ExerciseInWorkout());
+        Exercises.Remove(exercise);
     }
 
-
-    async Task OpenSideDialog()
+    private async Task OpenSideDialog()
     {
-        await DialogService.OpenSideAsync<DialogExerciseDataPicker>("Escoje los ejercicios que quieres añadir", options: new SideDialogOptions { CloseDialogOnOverlayClick = true, Position = DialogPosition.Left, ShowMask = true });
+        var result = await DialogService.OpenSideAsync<DialogExerciseDataPicker>("Escoje los ejercicios que quieres añadir", options: new SideDialogOptions { CloseDialogOnOverlayClick = true, Position = DialogPosition.Left, ShowMask = true });
+        if ( result is List<ExerciseData> exercises )
+        {
+            exercises.ForEach(exerciseData =>
+            {
+                if ( !Exercises.Any(e => e.Name == exerciseData.Name) )
+                {
+                    Exercises.Add(new ExerciseInWorkout { Name = exerciseData.Name });
+                }
+            });
+        }
     }
 }

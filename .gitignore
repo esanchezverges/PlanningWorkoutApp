@@ -49,3 +49,4 @@ gh-pages/
 *.DS_Store
 Thumbs.db
 
+/PlanningWorkoutApp.Web/wwwroot/index.html
