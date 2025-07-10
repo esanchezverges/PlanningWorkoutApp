@@ -35,7 +35,6 @@
                 if ( !Exercises.Any(e => e.Name == exerciseData.Name) )
                 {
                     Exercises.Add(new ExerciseInWorkout<IWorkoutSet> { Name = exerciseData.Name, Sets = [], WorkoutSetType = WorkoutSetType.Weighted });
-                    
                 }
             });
         }
