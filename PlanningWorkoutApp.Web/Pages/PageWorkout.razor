@@ -18,9 +18,9 @@
 </RadzenStack>
 
 @code {
-    public List<ExerciseInWorkout> Exercises { get; set; } = new List<ExerciseInWorkout>();
+    public List<ExerciseInWorkout<IWorkoutSet>> Exercises { get; set; } = [];
 
-    private void DeleteExercise(ExerciseInWorkout exercise)
+    private void DeleteExercise(ExerciseInWorkout<IWorkoutSet> exercise)
     {
         Exercises.Remove(exercise);
     }
@@ -34,7 +34,7 @@
             {
                 if ( !Exercises.Any(e => e.Name == exerciseData.Name) )
                 {
-                    Exercises.Add(new ExerciseInWorkout { Name = exerciseData.Name });
+                    Exercises.Add(new ExerciseInWorkout<IWorkoutSet> { Name = exerciseData.Name, Sets = [], WorkoutSetType = WorkoutSetType.Weighted });
                 }
             });
         }
