@@ -1,27 +1,40 @@
 ﻿@page "/schedule"
+@namespace PlanningWorkoutApp.Web
 
-<RadzenScheduler SlotRender=@OnSlotRender style="height: 768px;" TItem="Workout" Data=@appointments StartProperty="Start" EndProperty="End" ShowHeader=@showHeader
-                 TextProperty="Text" SelectedIndex="2"
-    SlotSelect=@OnSlotSelect AppointmentSelect=@OnAppointmentSelect AppointmentRender=@OnAppointmentRender DaySelect="@OnDaySelect"
-    AppointmentMove=@OnAppointmentMove >
+<RadzenScheduler SlotRender=@OnSlotRender
+                 style="height: 768px;"
+                 TItem="@WorkoutScheduleDto"
+                 Data=@workouts
+                 ShowHeader=@showHeader
+                 TextProperty="@(nameof(WorkoutScheduleDto.Title))"
+                 StartProperty="@(nameof(WorkoutScheduleDto.Start))"
+                 EndProperty="@(nameof(WorkoutScheduleDto.End))"
+                 SelectedIndex="2"
+                 SlotSelect=@OnSlotSelect 
+                 AppointmentSelect=@OnAppointmentSelect 
+                 AppointmentRender=@OnAppointmentRender 
+                 AppointmentMove=@OnAppointmentMove>
     <RadzenDayView />
     <RadzenWeekView />
     <RadzenMonthView />
 </RadzenScheduler>
 
+                 @*DaySelect="@OnDaySelect"*@
 @code {
-    RadzenScheduler<Workout> scheduler;
+    RadzenScheduler<WorkoutScheduleDto> scheduler;
     Dictionary<DateTime, string> events = new Dictionary<DateTime, string>();
+
+    public class WorkoutScheduleDto
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+    }
 
     bool showHeader = true;
 
-    IList<Workout> workouts =
-        [
-            new("Pierna", "Si no se yora es que no se ha entrenao"),
-            new("Pecho", "Mejor dia de la semana"),
-            new("Biceps", "Hasta que se vea la vena"),
-            new("Espalda", "Mucho mejor que hacer pierna"),
-    ];
+    IList<WorkoutScheduleDto> workouts = [new() { Title = "Test", Description = "Description", End = DateTime.Now, Start = DateTime.Now }];
 
     void OnSlotRender(SchedulerSlotRenderEventArgs args)
     {
@@ -42,46 +55,46 @@
     {
         if (args.View.Text != "Year")
         {
-            Workout data = await DialogService.OpenAsync<AddWorkoutDialog>("Add Appointment",
-                new Dictionary<string, object> { { "Start", args.Start }, { "End", args.End } });
-
-            if (data != null)
-            {
-                workouts.Add(data);
-                // Either call the Reload method or reassign the Data property of the Scheduler
-                await scheduler.Reload();
-            }
+            //Workout data = await DialogService.OpenAsync<AddWorkoutDialog>("Add Appointment",
+                //new Dictionary<string, object> { { "Start", args.Start }, { "End", args.End } });
+//
+            //if (data != null)
+            //{
+                //workouts.Add(data);
+                //// Either call the Reload method or reassign the Data property of the Scheduler
+                //await scheduler.Reload();
+            //}
         }
     }
 
-    async Task OnAppointmentSelect(SchedulerAppointmentSelectEventArgs<Workout> args)
+    async Task OnAppointmentSelect(SchedulerAppointmentSelectEventArgs<WorkoutScheduleDto> args)
     {
-        var copy = new Workout
-        {
-            Title = args.Data.Title,
-            Description = args.Data.Description,
-        };
+        //var copy = new WorkoutScheduleDto
+        //{
+            //Title = args.Data.Title,
+            //Description = args.Data.Description,
+        //};
 
-        var data = await DialogService.OpenAsync<EditWorkoutDialog>("Edit Appointment", new Dictionary<string, object> { { "Appointment", copy } });
+        //var data = await DialogService.OpenAsync<EditWorkoutDialog>("Edit Appointment", new Dictionary<string, object> { { "Appointment", copy } });
 
-        if (data != null)
-        {
+        //if (data != null)
+        //{
             // Update the appointment
-            args.Data.Title = data.Title;
-            args.Data.Description = data.Description;
-        }
+            //args.Data.Title = data.Title;
+            //args.Data.Description = data.Description;
+        //}
 
         await scheduler.Reload();
     }
 
-    void OnAppointmentRender(SchedulerAppointmentRenderEventArgs<Workout> args)
+    void OnAppointmentRender(SchedulerAppointmentRenderEventArgs<WorkoutScheduleDto> args)
     {
         // Never call StateHasChanged in AppointmentRender - would lead to infinite loop
 
-        if (args.Data.Title == "Birthday")
-        {
-            args.Attributes["style"] = "background: red";
-        }
+        //if (args.Data.Title == "Birthday")
+        //{
+            //args.Attributes["style"] = "background: red";
+        //}
     }
 
     async Task OnAppointmentMove(SchedulerAppointmentMoveEventArgs args)
@@ -90,18 +103,18 @@
 
         if (draggedAppointment != null)
         {
-            var duration = draggedAppointment.End - draggedAppointment.Start;
+            //var duration = draggedAppointment.End - draggedAppointment.Start;
 
             if (args.SlotDate.TimeOfDay == TimeSpan.Zero)
             {
-                draggedAppointment.Start = args.SlotDate.Date.Add(draggedAppointment.Start.TimeOfDay);
+                //draggedAppointment.Start = args.SlotDate.Date.Add(draggedAppointment.Start.TimeOfDay);
             }
             else
             {
-                draggedAppointment.Start = args.SlotDate;
+                //draggedAppointment.Start = args.SlotDate;
             }
 
-            draggedAppointment.End = draggedAppointment.Start.Add(duration);
+            //draggedAppointment.End = draggedAppointment.Start.Add(duration);
 
             await scheduler.Reload();
         }

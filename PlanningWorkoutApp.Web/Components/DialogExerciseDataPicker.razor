@@ -1,37 +1,43 @@
 ﻿@namespace PlanningWorkoutApp.Web
 @inject DialogService DialogService
 
+<div style="position:sticky">
 <RadzenStack>
     <PlanInput Label="Buscador" />
+    <RadzenButton Click="@(() => CloseDialog())" Text="Confirmar"></RadzenButton>
 </RadzenStack>
+</div>
 <RadzenStack Gap="2em">
-    @foreach ( var e in exerciseDatas )
+    @foreach (var e in exerciseDatas)
     {
         <RadzenRow>
             <RadzenCard>
                 <ChildContent>
-                    <div class="rd-d-flex">
-                        <h3>@e.Name</h3>
-                        @if ( !IsExerciseAdded(e) )
-                        {
-                            <RadzenButton Click="@(() => AddExercise(e))" Text="Añadir" />
-                        }
-                        else
-                        {
-                            <RadzenButton ButtonStyle="ButtonStyle.Danger" Click="@(() => DeleteExercise(e))" Text="Eliminar" />
-                        }
+                    <div @onclick="() => ToggleExercise(e)">
+                        <div class="rz-display-flex rz-overflow-hidden rz-border-radius-2">
+                            <div class="@(IsExerciseAdded(e) ? "rz-background-color-success added-sidebar" : "added-sidebar")"></div>
+                            <div>
+                                <h3>@e.Name</h3>
+                                <p>@e.Description</p>
+                                <RadzenImage Path="@e.ImageUrl" Style="max-width: 100%;" />
+                            </div>
+                        </div>
                     </div>
-                    <p>@e.Description</p>
-                    <RadzenImage Path="@e.ImageUrl" Style="max-width: 100%;" />
                 </ChildContent>
             </RadzenCard>
         </RadzenRow>
     }
 </RadzenStack>
 <div class="fix-bottom">
-    <RadzenButton Click="@(() => CloseDialog())" Text="Confirmar"></RadzenButton>
 </div>
 @code {
+
+    public void ToggleExercise(ExerciseData exercise)
+    {
+        if (IsExerciseAdded(exercise)) DeleteExercise(exercise);
+        else AddExercise(exercise);
+    }
+
     public List<ExerciseData> exerciseDatas { get; set; } = new List<ExerciseData>
     {
         new ExerciseData
@@ -129,12 +135,16 @@
 }
 
 <style>
-  .fix-bottom{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    padding: 10px;
-    z-index: 1000; 
-  }
+    .fix-bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        padding: 10px;
+        z-index: 1000;
+    }
+    .added-sidebar {
+        width: 15px;
+        margin-right: 1em;
+    }
 </style>
