@@ -1,0 +1,109 @@
+﻿@page "/schedule"
+
+<RadzenScheduler SlotRender=@OnSlotRender style="height: 768px;" TItem="Workout" Data=@appointments StartProperty="Start" EndProperty="End" ShowHeader=@showHeader
+                 TextProperty="Text" SelectedIndex="2"
+    SlotSelect=@OnSlotSelect AppointmentSelect=@OnAppointmentSelect AppointmentRender=@OnAppointmentRender DaySelect="@OnDaySelect"
+    AppointmentMove=@OnAppointmentMove >
+    <RadzenDayView />
+    <RadzenWeekView />
+    <RadzenMonthView />
+</RadzenScheduler>
+
+@code {
+    RadzenScheduler<Workout> scheduler;
+    Dictionary<DateTime, string> events = new Dictionary<DateTime, string>();
+
+    bool showHeader = true;
+
+    IList<Workout> workouts =
+        [
+            new("Pierna", "Si no se yora es que no se ha entrenao"),
+            new("Pecho", "Mejor dia de la semana"),
+            new("Biceps", "Hasta que se vea la vena"),
+            new("Espalda", "Mucho mejor que hacer pierna"),
+    ];
+
+    void OnSlotRender(SchedulerSlotRenderEventArgs args)
+    {
+        // Highlight today in month view
+        if (args.View.Text == "Month" && args.Start.Date == DateTime.Today)
+        {
+            args.Attributes["style"] = "background: var(--rz-scheduler-highlight-background-color, rgba(255,220,40,.2));";
+        }
+
+        // Highlight working hours (9-18)
+        if ((args.View.Text == "Week" || args.View.Text == "Day") && args.Start.Hour > 8 && args.Start.Hour < 19)
+        {
+            args.Attributes["style"] = "background: var(--rz-scheduler-highlight-background-color, rgba(255,220,40,.2));";
+        }
+    }
+
+    async Task OnSlotSelect(SchedulerSlotSelectEventArgs args)
+    {
+        if (args.View.Text != "Year")
+        {
+            Workout data = await DialogService.OpenAsync<AddWorkoutDialog>("Add Appointment",
+                new Dictionary<string, object> { { "Start", args.Start }, { "End", args.End } });
+
+            if (data != null)
+            {
+                workouts.Add(data);
+                // Either call the Reload method or reassign the Data property of the Scheduler
+                await scheduler.Reload();
+            }
+        }
+    }
+
+    async Task OnAppointmentSelect(SchedulerAppointmentSelectEventArgs<Workout> args)
+    {
+        var copy = new Workout
+        {
+            Title = args.Data.Title,
+            Description = args.Data.Description,
+        };
+
+        var data = await DialogService.OpenAsync<EditWorkoutDialog>("Edit Appointment", new Dictionary<string, object> { { "Appointment", copy } });
+
+        if (data != null)
+        {
+            // Update the appointment
+            args.Data.Title = data.Title;
+            args.Data.Description = data.Description;
+        }
+
+        await scheduler.Reload();
+    }
+
+    void OnAppointmentRender(SchedulerAppointmentRenderEventArgs<Workout> args)
+    {
+        // Never call StateHasChanged in AppointmentRender - would lead to infinite loop
+
+        if (args.Data.Title == "Birthday")
+        {
+            args.Attributes["style"] = "background: red";
+        }
+    }
+
+    async Task OnAppointmentMove(SchedulerAppointmentMoveEventArgs args)
+    {
+        var draggedAppointment = workouts.FirstOrDefault(x => x == args.Appointment.Data);
+
+        if (draggedAppointment != null)
+        {
+            var duration = draggedAppointment.End - draggedAppointment.Start;
+
+            if (args.SlotDate.TimeOfDay == TimeSpan.Zero)
+            {
+                draggedAppointment.Start = args.SlotDate.Date.Add(draggedAppointment.Start.TimeOfDay);
+            }
+            else
+            {
+                draggedAppointment.Start = args.SlotDate;
+            }
+
+            draggedAppointment.End = draggedAppointment.Start.Add(duration);
+
+            await scheduler.Reload();
+        }
+    }
+}

@@ -1,5 +1,19 @@
 ﻿namespace PlanningWorkoutApp.Web;
 
+public class Workout
+{
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public List<IWorkoutSet> Sets { get; set; }
+    public string IdForUserAsigned { get; set; }
+    public Workout() { }
+    public Workout(string title, string description)
+    {
+        Title = title;
+        Description = description;
+    }
+}
+
 public class ExerciseData
 {
     public string Name { get; set; }
@@ -28,6 +42,7 @@ public abstract class WorkoutSet : IWorkoutSet
 {
     public int SetNumber { get; init; }
     public TimeSpan Rest { get; set; }
+    public string Notes { get; set; }
 
     public abstract WorkoutSetType SetType { get; }
 
