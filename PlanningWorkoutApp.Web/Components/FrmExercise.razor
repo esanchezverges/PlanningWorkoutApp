@@ -1,0 +1,37 @@
+﻿@namespace PlanningWorkoutApp.Web
+
+<RadzenCard>
+    <label> (PlaceholderImageThumnail) @Value.Name (this is a dropdown to change exercise) </label>
+    <RadzenNumeric Min="0" Max="99" Value="Value.Sets" Name="Numero de sets"></RadzenNumeric>
+    @foreach (var set in Value.Sets)
+    {
+        <div class="rz-display-flex gap-4">
+            <PlanInput Label="Repeticiones" />
+            <PlanInput Label="Peso (kg)" />
+        </div>
+    }
+    <RadzenButton Click="OnDeleteExerciseHandler" ButtonStyle="ButtonStyle.Danger" Text="Eliminar"></RadzenButton>
+</RadzenCard>
+
+@code {
+    [Parameter] public EventCallback<ExerciseInWorkout<IWorkoutSet>> OnDeleteExercise { get; set; }
+    [Parameter] public ExerciseInWorkout<IWorkoutSet> Value { get; set; } = null!;
+    [Parameter] public EventCallback<ExerciseInWorkout<IWorkoutSet>> ValueChanged { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (Value is null)
+            throw new ArgumentNullException("Value is null in FrmExercise",nameof(Value));
+    }
+
+    private async void OnValueChangedHandler()
+    {
+
+    }
+
+    private async void OnDeleteExerciseHandler()
+    {
+        await OnDeleteExercise.InvokeAsync(Value);
+    }
+
+}

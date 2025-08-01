@@ -1,8 +1,10 @@
 ﻿@namespace PlanningWorkoutApp.UI
 @using System.Linq.Expressions
 
-<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">@Label</RadzenText>
-<RadzenTextBox Disabled=@Disabled Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression" Style="width: 100%" aria-label="@Label" />
+<div>
+    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">@Label</RadzenText>
+    <RadzenTextBox Disabled=@Disabled Value="@Value" ValueChanged="@ValueChanged" ValueExpression="@ValueExpression" Style="width: 100%" aria-label="@Label" />
+</div>
 
 @code{
     [Parameter] public string? Label { get; set; }

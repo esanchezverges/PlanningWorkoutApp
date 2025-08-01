@@ -3,17 +3,9 @@
 
 <RadzenButton Click="@OpenSideDialog" Text="Añadir ejercicio"></RadzenButton>
 <RadzenStack Gap="2em">
-    @foreach ( var e in Exercises )
+    @foreach (var e in Exercises)
     {
-        <RadzenCard>
-            <PlanInput Label="Ejercicio"
-            Value=@e.Name
-            Disabled />
-            <PlanInput Label="Numero de sets" />
-            <PlanInput Label="Repeticiones" />
-            <PlanInput Label="Peso (kg)" />
-            <RadzenButton Click="() => DeleteExercise(e)" ButtonStyle="ButtonStyle.Danger" Text="Eliminar"></RadzenButton>
-        </RadzenCard>
+        <FrmExercise Value="e"></FrmExercise>
     }
 </RadzenStack>
 
