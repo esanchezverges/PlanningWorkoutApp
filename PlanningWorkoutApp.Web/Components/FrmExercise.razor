@@ -2,14 +2,20 @@
 
 <RadzenCard>
     <label> (PlaceholderImageThumnail) @Value.Name (this is a dropdown to change exercise) </label>
-    <RadzenNumeric Min="0" Max="99" Value="Value.Sets" Name="Numero de sets"></RadzenNumeric>
-    @foreach (var set in Value.Sets)
+    @foreach ( IWorkoutSet set in Value.Sets )
     {
-        <div class="rz-display-flex gap-4">
+        <div class="rz-display-flex gap-4 align-items-center">
+            <label>@set.SetNumber</label>
             <PlanInput Label="Repeticiones" />
             <PlanInput Label="Peso (kg)" />
+            <div class="rz-display-flex gap-1 align-items-center">
+                <RadzenButton Icon="delete" Click=@(_ => DeleteSet(set)) />
+                <RadzenButton Visible="@(set.SetNumber > 1)" Icon="arrow_upward" Click=@(_ => ReorderUpwards(set)) />
+                <RadzenButton Visible="@(set.SetNumber < Value.Sets.Count)" Icon="arrow_downward" Click=@(_ => ReorderDownwards(set)) />
+            </div>
         </div>
     }
+    <RadzenButton Click="AddSet" Text="Añadir set" />
     <RadzenButton Click="OnDeleteExerciseHandler" ButtonStyle="ButtonStyle.Danger" Text="Eliminar"></RadzenButton>
 </RadzenCard>
 
@@ -22,6 +28,42 @@
     {
         if (Value is null)
             throw new ArgumentNullException("Value is null in FrmExercise",nameof(Value));
+    }
+
+    private void DeleteSet(IWorkoutSet set)
+    {
+        var index = set.SetNumber -1;
+        Value.Sets.RemoveAt(index);
+        ReenumerateSets();
+    }
+
+    private void ReorderUpwards(IWorkoutSet set)
+    {
+        var index = set.SetNumber -1;
+	    Value.Sets.RemoveAt(index);
+	    Value.Sets.Insert(index - 1, set);
+	    ReenumerateSets();
+    }
+
+    private void ReorderDownwards(IWorkoutSet set)
+    {
+        var index = set.SetNumber -1;
+	    Value.Sets.RemoveAt(index);
+	    Value.Sets.Insert(index + 1, set);
+	    ReenumerateSets();
+    }
+
+    private void ReenumerateSets()
+    {
+        for (int i = 0; i < Value.Sets.Count; i++)
+        {
+            Value.Sets[i].SetNumber = i + 1;
+        }
+    }
+
+    private void AddSet()
+    {
+        Value.Sets.Add(new WeightedSet(Value.Sets.Count + 1, TimeSpan.FromSeconds(20), 0, 0));
     }
 
     private async void OnValueChangedHandler()

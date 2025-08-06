@@ -33,18 +33,17 @@ public enum WorkoutSetType
 
 public interface IWorkoutSet
 {
-    int SetNumber { get; }
-    TimeSpan Rest { get; }
+    int SetNumber { get; set; }
+    TimeSpan Rest { get; set; }
     WorkoutSetType SetType { get; }
 }
 
 public abstract class WorkoutSet : IWorkoutSet
 {
-    public int SetNumber { get; init; }
-    public TimeSpan Rest { get; set; }
     public string Notes { get; set; }
-
     public abstract WorkoutSetType SetType { get; }
+    public int SetNumber { get; set; }
+    public TimeSpan Rest { get; set; }
 
     protected WorkoutSet(int setNumber, TimeSpan rest)
     {
